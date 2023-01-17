@@ -1,2 +1,4 @@
-package com.springtutorial.tutorial.student;public class StudentController {
+package com.springtutorial.tutorial.student;
+
+public class StudentController {
 }
