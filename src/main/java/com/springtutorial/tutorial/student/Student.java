@@ -1,8 +1,9 @@
 package com.springtutorial.tutorial.student;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+import java.time.Period;
+
 @Entity
 @Table
 public class Student {
@@ -20,24 +21,24 @@ public class Student {
     private String name;
     private String mail;
     private LocalDate dob;
+    //This field there is no need for column in db
+    @Transient
     private Integer age;
 
     public Student() {
     }
 
-    public Student(Long id, String name, String mail, LocalDate dob, Integer age) {
+    public Student(Long id,String name, String mail, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.dob = dob;
-        this.age = age;
     }
 
-    public Student(String name, String mail, LocalDate dob, Integer age) {
+    public Student(String name,String mail, LocalDate dob) {
         this.name = name;
         this.mail = mail;
         this.dob = dob;
-        this.age = age;
     }
 
     public Long getId() {
@@ -73,7 +74,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.dob,LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
